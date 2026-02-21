@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ПарникПро — Якісні Парники для Вашого Саду</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --green-mid: #40916c;
+    --dark: #1b1b1b;
+    --gray: #6b7280;
+    --light: #f9fafb;
+    --white: #ffffff;
+    --accent: #e9c46a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 6%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(45,106,79,0.1);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--green);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--green-light); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-mid) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 6% 80px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0faf4 0%, #e8f5ee 50%, #d8f3dc 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(82,183,136,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(45,106,79,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 580px; position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-pale);
+    color: var(--green);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 900;
+    line-height: 1.12;
+    color: var(--dark);
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 8px 24px rgba(45,106,79,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover {
+    background: var(--green-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(45,106,79,0.4);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--green);
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid var(--green);
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-secondary:hover {
+    background: var(--green);
+    color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 56px;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .stat { }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--green);
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--gray);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .hero-visual {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(500px, 45vw);
+    animation: floatIn 0.8s 0.2s ease both;
+  }
+
+  .greenhouse-illustration {
+    width: 100%;
+    filter: drop-shadow(0 20px 60px rgba(45,106,79,0.2));
+  }
+
+  /* CATALOG */
+  .catalog {
+    padding: 100px 6%;
+    background: var(--white);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .section-tag {
+    display: inline-block;
+    color: var(--green-light);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .section-header p {
+    margin-top: 16px;
+    color: var(--gray);
+    font-size: 1.05rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(45,106,79,0.12);
+    border-color: var(--green-pale);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: var(--green);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+  .badge-hot { background: #ef4444; }
+  .badge-new { background: var(--accent); color: var(--dark); }
+
+  .product-img {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, var(--green-pale), #b7e4c7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-img::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(transparent, rgba(255,255,255,0.5));
+  }
+
+  .product-body { padding: 24px; }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .product-desc {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .product-specs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .spec-tag {
+    background: var(--green-pale);
+    color: var(--green);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+  }
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+  }
+  .product-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--green);
+  }
+  .product-price small {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-weight: 400;
+    display: block;
+    margin-top: -4px;
+  }
+  .btn-card {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-card:hover { background: var(--green-mid); transform: scale(1.05); }
+
+  /* BENEFITS */
+  .benefits {
+    padding: 100px 6%;
+    background: linear-gradient(180deg, #f9fafb 0%, var(--white) 100%);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .benefit-card {
+    padding: 36px 28px;
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--green-light);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    border-radius: 0 2px 2px 0;
+  }
+  .benefit-card:hover::before { transform: scaleY(1); }
+  .benefit-card:hover {
+    transform: translateX(6px);
+    box-shadow: 0 8px 30px rgba(45,106,79,0.1);
+    border-color: var(--green-pale);
+  }
+
+  .benefit-icon {
+    width: 56px; height: 56px;
+    background: var(--green-pale);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  .benefit-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  .benefit-card p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.65;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 100px 6%;
+    background: var(--green);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+  .contact::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 5%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-info .section-tag { color: rgba(255,255,255,0.7); }
+  .contact-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .contact-info p {
+    color: rgba(255,255,255,0.75);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .contact-detail .icon {
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-form {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.15);
+  }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    color: var(--dark);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    background: var(--white);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--green-light);
+    box-shadow: 0 0 0 3px rgba(82,183,136,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 8px;
+    box-shadow: 0 8px 24px rgba(45,106,79,0.25);
+  }
+  .form-submit:hover {
+    background: var(--green-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(45,106,79,0.35);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    padding: 32px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+  }
+  footer .logo { color: rgba(255,255,255,0.9); }
+  footer .logo span { color: var(--green-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(-50%) translateX(40px); }
+    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-visual { display: none; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding-top: 100px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-stats { gap: 24px; }
+    .contact-form { padding: 28px 20px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* SUCCESS MESSAGE */
+  .success-msg {
+    display: none;
+    background: var(--green-pale);
+    color: var(--green);
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  /* VALIDATION */
+  .form-group input.error,
+  .form-group select.error,
+  .form-group textarea.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+  }
+  .form-group input.valid,
+  .form-group select.valid,
+  .form-group textarea.valid {
+    border-color: var(--green-light);
+    box-shadow: 0 0 0 3px rgba(82,183,136,0.12);
+  }
+  .field-error {
+    display: none;
+    color: #ef4444;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-top: 6px;
+    padding-left: 4px;
+    animation: fadeUp 0.2s ease;
+  }
+  .field-error.visible { display: block; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">Парник<span>Про</span></div>
+  <ul class="nav-links">
+    <li><a href="#catalog">Каталог</a></li>
+    <li><a href="#benefits">Переваги</a></li>
+    <li><a href="#contact" class="nav-cta">Замовити</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌱 Виробник парників №1 в Україні</div>
+    <h1>Парники для <em>щедрого</em> врожаю</h1>
+    <p>Виготовляємо якісні парники та теплиці з надійних матеріалів. Монтаж «під ключ», гарантія 5 років, доставка по всій Україні.</p>
+    <div class="hero-buttons">
+      <a href="#catalog" class="btn-primary">Переглянути каталог →</a>
+      <a href="#contact" class="btn-secondary">📞 Зателефонувати</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">1200+</div>
+        <div class="stat-label">Задоволених клієнтів</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5 р.</div>
+        <div class="stat-label">Гарантія якості</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">48г.</div>
+        <div class="stat-label">Доставка по Україні</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG Greenhouse Illustration -->
+  <div class="hero-visual">
+    <svg class="greenhouse-illustration" viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ground -->
+      <ellipse cx="240" cy="370" rx="200" ry="20" fill="#b7e4c7" opacity="0.5"/>
+      <!-- Greenhouse body -->
+      <rect x="60" y="180" width="360" height="190" rx="8" fill="#d8f3dc" stroke="#52b788" stroke-width="3"/>
+      <!-- Roof -->
+      <path d="M40 190 L240 60 L440 190Z" fill="#95d5b2" stroke="#40916c" stroke-width="3"/>
+      <!-- Roof lines -->
+      <path d="M240 60 L240 190" stroke="#40916c" stroke-width="2" stroke-dasharray="6,4"/>
+      <path d="M40 190 L440 190" stroke="#40916c" stroke-width="2"/>
+      <!-- Door -->
+      <rect x="180" y="270" width="70" height="100" rx="6" fill="#74c69d" stroke="#2d6a4f" stroke-width="2"/>
+      <circle cx="242" cy="320" r="4" fill="#2d6a4f"/>
+      <!-- Windows left -->
+      <rect x="80" y="210" width="80" height="50" rx="6" fill="rgba(255,255,255,0.6)" stroke="#52b788" stroke-width="2"/>
+      <line x1="120" y1="210" x2="120" y2="260" stroke="#52b788" stroke-width="1.5"/>
+      <line x1="80" y1="235" x2="160" y2="235" stroke="#52b788" stroke-width="1.5"/>
+      <!-- Windows right -->
+      <rect x="320" y="210" width="80" height="50" rx="6" fill="rgba(255,255,255,0.6)" stroke="#52b788" stroke-width="2"/>
+      <line x1="360" y1="210" x2="360" y2="260" stroke="#52b788" stroke-width="1.5"/>
+      <line x1="320" y1="235" x2="400" y2="235" stroke="#52b788" stroke-width="1.5"/>
+      <!-- Plants inside (visible through door/walls) -->
+      <ellipse cx="130" cy="365" rx="18" ry="8" fill="#52b788" opacity="0.8"/>
+      <line x1="130" y1="357" x2="130" y2="340" stroke="#2d6a4f" stroke-width="2"/>
+      <path d="M130 340 Q118 330 115 318" stroke="#2d6a4f" stroke-width="2" fill="none"/>
+      <ellipse cx="113" cy="316" rx="10" ry="7" fill="#74c69d"/>
+
+      <ellipse cx="350" cy="365" rx="18" ry="8" fill="#52b788" opacity="0.8"/>
+      <line x1="350" y1="357" x2="350" y2="335" stroke="#2d6a4f" stroke-width="2"/>
+      <path d="M350 335 Q362 322 368 312" stroke="#2d6a4f" stroke-width="2" fill="none"/>
+      <ellipse cx="370" cy="310" rx="12" ry="8" fill="#74c69d"/>
+
+      <!-- Sun -->
+      <circle cx="400" cy="80" r="32" fill="#e9c46a" opacity="0.9"/>
+      <circle cx="400" cy="80" r="24" fill="#f4d03f"/>
+      <!-- Sun rays -->
+      <line x1="400" y1="36" x2="400" y2="28" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="400" y1="124" x2="400" y2="132" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="356" y1="80" x2="348" y2="80" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="444" y1="80" x2="452" y2="80" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="369" y1="49" x2="363" y2="43" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="431" y1="111" x2="437" y2="117" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="431" y1="49" x2="437" y2="43" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="369" y1="111" x2="363" y2="117" stroke="#e9c46a" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Clouds -->
+      <ellipse cx="80" cy="90" rx="30" ry="16" fill="white" opacity="0.8"/>
+      <ellipse cx="100" cy="82" rx="22" ry="14" fill="white" opacity="0.8"/>
+      <ellipse cx="60" cy="86" rx="20" ry="12" fill="white" opacity="0.8"/>
+    </svg>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog" id="catalog">
+  <div class="section-header fade-in">
+    <div class="section-tag">— Наш асортимент —</div>
+    <h2>Каталог парників</h2>
+    <p>Знайдіть ідеальний парник для вашої ділянки. Усі моделі є в наявності.</p>
+  </div>
+
+  <div class="catalog-grid">
+    <div class="product-card fade-in">
+      <div class="product-badge badge-hot">Хіт продажів</div>
+      <div class="product-img">🏡</div>
+      <div class="product-body">
+        <div class="product-name">Дачний Стандарт 3×6</div>
+        <div class="product-desc">Класичний арочний парник з оцинкованого профілю. Ідеально підходить для дачних ділянок.</div>
+        <div class="product-specs">
+          <span class="spec-tag">3 × 6 м</span>
+          <span class="spec-tag">Полікарбонат 6 мм</span>
+          <span class="spec-tag">Оцинкована сталь</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">8 500 ₴ <small>монтаж включено</small></div>
+          <button class="btn-card" onclick="scrollToContact('Дачний Стандарт 3×6')">Замовити</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-badge badge-new">Новинка</div>
+      <div class="product-img">🌿</div>
+      <div class="product-body">
+        <div class="product-name">Фермер Про 4×8</div>
+        <div class="product-desc">Посилена конструкція для цілорічного використання. Витримує снігове навантаження до 120 кг/м².</div>
+        <div class="product-specs">
+          <span class="spec-tag">4 × 8 м</span>
+          <span class="spec-tag">Полікарбонат 8 мм</span>
+          <span class="spec-tag">Цілорічна</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">15 200 ₴ <small>монтаж включено</small></div>
+          <button class="btn-card" onclick="scrollToContact('Фермер Про 4×8')">Замовити</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-img">🥦</div>
+      <div class="product-body">
+        <div class="product-name">Міні-парник 2×4</div>
+        <div class="product-desc">Компактне рішення для невеликих ділянок. Легкий монтаж — до 2 годин без інструменту.</div>
+        <div class="product-specs">
+          <span class="spec-tag">2 × 4 м</span>
+          <span class="spec-tag">ПВХ-плівка</span>
+          <span class="spec-tag">Розбірний</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">3 800 ₴ <small>монтаж включено</small></div>
+          <button class="btn-card" onclick="scrollToContact('Міні-парник 2×4')">Замовити</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-img">🌾</div>
+      <div class="product-body">
+        <div class="product-name">Агро Макс 6×12</div>
+        <div class="product-desc">Промислова теплиця для серйозного господарства. Автоматична вентиляція у комплекті.</div>
+        <div class="product-specs">
+          <span class="spec-tag">6 × 12 м</span>
+          <span class="spec-tag">Полікарбонат 10 мм</span>
+          <span class="spec-tag">Автовентиляція</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">38 000 ₴ <small>монтаж включено</small></div>
+          <button class="btn-card" onclick="scrollToContact('Агро Макс 6×12')">Замовити</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-in">
+      <div class="product-img">🍅</div>
+      <div class="product-body">
+        <div class="product-name">Балконний парник</div>
+        <div class="product-desc">Парник-стелаж для балкону або тераси. Компактний, але містить 4 полиці для розсади.</div>
+        <div class="product-specs">
+          <span class="spec-tag">0.7 × 1.4 м</span>
+          <span class="spec-tag">Металевий каркас</span>
+          <span class="spec-tag">4 полиці</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">1 200 ₴ <small>самовивіз/доставка</small></div>
+          <button class="btn-card" onclick="scrollToContact('Балконний парник')">Замовити</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card fade-in" style="background: linear-gradient(135deg, var(--green-pale), #b7e4c7); border-color: var(--green-light); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px 28px;">
+      <div style="font-size:3rem; margin-bottom:16px;">🛠️</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:12px;">Індивідуальне замовлення</h3>
+      <p style="color:var(--gray);font-size:0.9rem;line-height:1.6;margin-bottom:24px;">Потрібен нестандартний розмір або особлива конфігурація? Виготовимо за вашими параметрами.</p>
+      <button class="btn-primary" onclick="scrollToContact('Індивідуальне замовлення')" style="font-size:0.9rem;padding:12px 24px;">Розрахувати вартість</button>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="section-header fade-in">
+    <div class="section-tag">— Чому обирають нас —</div>
+    <h2>Переваги роботи з нами</h2>
+    <p>Ми виробляємо парники в Україні вже понад 8 років і знаємо, що важливо для наших клієнтів.</p>
+  </div>
+
+  <div class="benefits-grid">
+    <div class="benefit-card fade-in">
+      <div class="benefit-icon">🏭</div>
+      <h3>Власне виробництво</h3>
+      <p>Виготовляємо парники на власному заводі — жодних посередників. Контролюємо якість на кожному етапі.</p>
+    </div>
+
+    <div class="benefit-card fade-in">
+      <div class="benefit-icon">🛡️</div>
+      <h3>Гарантія 5 років</h3>
+      <p>Надаємо офіційну гарантію на конструкцію та матеріали. Якщо щось піде не так — замінимо безкоштовно.</p>
+    </div>
+
+    <div class="benefit-card fade-in">
+      <div class="benefit-icon">🚚</div>
+      <h3>Доставка по Україні</h3>
+      <p>Доставляємо протягом 48 годин по всій Україні. Монтаж «під ключ» — наша команда приїде та встановить.</p>
+    </div>
+
+    <div class="benefit-card fade-in">
+      <div class="benefit-icon">💰</div>
+      <h3>Чесні ціни</h3>
+      <p>Ціна на сайті — це ціна, яку ви заплатите. Без прихованих доплат і «уточнень у менеджера».</p>
+    </div>
+
+    <div class="benefit-card fade-in">
+      <div class="benefit-icon">🌡️</div>
+      <h3>Матеріали для України</h3>
+      <p>Використовуємо полікарбонат і сталь, розраховані на наш клімат: від морозів −25°C до спеки +40°C.</p>
+    </div>
+
+    <div class="benefit-card fade-in">
+      <div class="benefit-icon">🤝</div>
+      <h3>Підтримка після продажу</h3>
+      <p>Наші фахівці завжди на зв'язку. Консультуємо з агрономічних питань і допомагаємо з обслуговуванням.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-tag">— Зв'яжіться з нами —</div>
+      <h2>Замовте безкоштовний прорахунок</h2>
+      <p>Залиште заявку, і наш менеджер зателефонує протягом 30 хвилин, щоб уточнити деталі та розрахувати вартість.</p>
+      <div class="contact-detail">
+        <div class="icon">📞</div>
+        +38 (093) 000-00-00
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📧</div>
+        <span id="emailDisplay"></span>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        Доставка по всій Україні
+      </div>
+      <div class="contact-detail">
+        <div class="icon">⏰</div>
+        Пн–Сб, 8:00 – 19:00
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Залишити заявку</h3>
+      <form id="orderForm" onsubmit="handleSubmit(event)" novalidate>
+        <div class="form-group">
+          <label>Ваше ім'я</label>
+          <input type="text" id="fieldName" placeholder="Наприклад: Іван Коваленко" autocomplete="name">
+          <div class="field-error" id="errorName">⚠ Введіть ім'я (мінімум 2 літери, без цифр)</div>
+        </div>
+        <div class="form-group">
+          <label>Номер телефону</label>
+          <input type="tel" id="fieldPhone" placeholder="+38 (0XX) XXX-XX-XX" autocomplete="tel">
+          <div class="field-error" id="errorPhone">⚠ Введіть номер у форматі +38 (0XX) XXX-XX-XX</div>
+        </div>
+        <div class="form-group">
+          <label>Яка модель вас цікавить?</label>
+          <select id="productSelect">
+            <option value="">Не визначився — потрібна консультація</option>
+            <option>Дачний Стандарт 3×6</option>
+            <option>Фермер Про 4×8</option>
+            <option>Міні-парник 2×4</option>
+            <option>Агро Макс 6×12</option>
+            <option>Балконний парник</option>
+            <option>Індивідуальне замовлення</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Коментар (необов'язково)</label>
+          <textarea id="fieldComment" placeholder="Розмір ділянки, побажання, питання..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Надіслати заявку →</button>
+        <div class="success-msg" id="successMsg">✅ Дякуємо! Ми зателефонуємо вам протягом 30 хвилин.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Парник<span>Про</span></div>
+  <span>© 2025 ПарникПро. Всі права захищено.</span>
+  <span>Зроблено з ❤️ в Україні 🇺🇦</span>
+</footer>
+
+<script>
+  // Inject email via JS so Cloudflare can't obfuscate it
+  document.getElementById('emailDisplay').textContent = ['info', 'parnikpro.ua'].join('@');
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Scroll to contact and pre-select product
+  function scrollToContact(product) {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    if (product) {
+      setTimeout(() => {
+        const sel = document.getElementById('productSelect');
+        for (let opt of sel.options) {
+          if (opt.text === product) { sel.value = opt.value || opt.text; break; }
+        }
+      }, 600);
+    }
+  }
+
+  // ── VALIDATION HELPERS ──
+  function setFieldState(input, errorEl, isValid, msg) {
+    input.classList.toggle('error', !isValid);
+    input.classList.toggle('valid', isValid);
+    if (msg) errorEl.textContent = '⚠ ' + msg;
+    errorEl.classList.toggle('visible', !isValid);
+    return isValid;
+  }
+
+  function validateName() {
+    const input = document.getElementById('fieldName');
+    const err   = document.getElementById('errorName');
+    const val   = input.value.trim();
+    if (val.length === 0) return setFieldState(input, err, false, "Це поле обов'язкове");
+    if (val.length < 2)   return setFieldState(input, err, false, "Мінімум 2 символи");
+    if (!/^[\u0400-\u04FFa-zA-Z'\- ]+$/.test(val)) return setFieldState(input, err, false, "Тільки літери, без цифр та спецсимволів");
+    return setFieldState(input, err, true);
+  }
+
+  function validatePhone() {
+    const input = document.getElementById('fieldPhone');
+    const err   = document.getElementById('errorPhone');
+    const ok = /^\+38 \(0\d{2}\) \d{3}-\d{2}-\d{2}$/.test(input.value.trim());
+    return setFieldState(input, err, ok, ok ? null : "Введіть номер у форматі +38 (0XX) XXX-XX-XX");
+  }
+
+  // ── PHONE AUTO-FORMAT ──
+  const phoneInput = document.getElementById('fieldPhone');
+  phoneInput.addEventListener('input', (e) => {
+    // Extract only digits from what user typed
+    let raw = e.target.value.replace(/\D/g, '');
+    // Strip country/operator prefixes so we always work with 9 operator digits (0XX XXX XX XX)
+    if (raw.startsWith('380')) raw = raw.slice(2);      // 380XX... → 0XX...
+    else if (raw.startsWith('38')) raw = raw.slice(2);  // 38XX...  → XX...
+    // raw now should be: 0XXXXXXXXX (10 digits) or XXXXXXXXX (9 digits)
+    // Normalize: strip leading 0 to get 9 pure digits, then re-add structure
+    if (raw.startsWith('0')) raw = raw.slice(1);        // 0XXXXXXXXX → XXXXXXXXX
+    raw = raw.slice(0, 9); // max 9 digits after the leading 0
+
+    // Build formatted string: +38 (0XX) XXX-XX-XX
+    let f = '+38 (0';
+    if (raw.length > 0) f += raw.slice(0, 2);           // operator 2 digits
+    if (raw.length >= 3) f += ') ' + raw.slice(2, 5);   // first 3 digits
+    else if (raw.length === 2) f += ')';
+    if (raw.length >= 6) f += '-' + raw.slice(5, 7);    // next 2 digits
+    if (raw.length >= 8) f += '-' + raw.slice(7, 9);    // last 2 digits
+    e.target.value = f;
+    // validate in real-time after user started typing
+    if (digits.length > 0) validatePhone();
+  });
+  phoneInput.addEventListener('blur', validatePhone);
+
+  // ── NAME REAL-TIME VALIDATION ──
+  const nameInput = document.getElementById('fieldName');
+  nameInput.addEventListener('input', () => {
+    if (nameInput.value.length > 0) validateName();
+  });
+  nameInput.addEventListener('blur', validateName);
+
+  // ── RESET FORM WHEN USER STARTS TYPING AGAIN ──
+  function resetFormIfNeeded() {
+    const btn = document.querySelector('.form-submit');
+    const successMsg = document.getElementById('successMsg');
+    if (successMsg.style.display === 'block') {
+      successMsg.style.display = 'none';
+      btn.style.display = '';
+      btn.disabled = false;
+      btn.textContent = 'Надіслати заявку →';
+    }
+  }
+
+  ['fieldName', 'fieldPhone', 'productSelect', 'fieldComment'].forEach(id => {
+    document.getElementById(id).addEventListener('input', resetFormIfNeeded);
+  });
+  document.getElementById('productSelect').addEventListener('change', resetFormIfNeeded);
+
+  // ── FORM SUBMIT ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const nameOk  = validateName();
+    const phoneOk = validatePhone();
+
+    if (!nameOk || !phoneOk) {
+      const btn = e.target.querySelector('.form-submit');
+      btn.style.background = '#ef4444';
+      btn.textContent = 'Перевірте поля ↑';
+      setTimeout(() => {
+        btn.style.background = '';
+        btn.textContent = 'Надіслати заявку →';
+      }, 1800);
+      const firstErr = e.target.querySelector('.error');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Надсилання...';
+    btn.disabled = true;
+
+    const payload = {
+      name:    document.getElementById('fieldName').value.trim(),
+      phone:   document.getElementById('fieldPhone').value.trim(),
+      product: document.getElementById('productSelect').value || 'Не визначився',
+      comment: document.getElementById('fieldComment').value.trim()
+    };
+
+    fetch('https://script.google.com/macros/s/AKfycbxD_neTvknqJhbvcb2uhxnZe3JQRPuV3psgXgIfiqUtwNKq0_Yu2jUFTBPum5J8lRGIWg/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .finally(() => {
+      // Clear all fields
+      document.getElementById('fieldName').value = '';
+      document.getElementById('fieldPhone').value = '';
+      document.getElementById('productSelect').value = '';
+      document.getElementById('fieldComment').value = '';
+      ['fieldName', 'fieldPhone'].forEach(id => {
+        document.getElementById(id).classList.remove('valid', 'error');
+      });
+      btn.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    });
+  }
+</script>
+</body>
+</html>
